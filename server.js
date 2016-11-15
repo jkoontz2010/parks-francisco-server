@@ -53,7 +53,7 @@ app.get("/parks", function(req, res) {
                     { $nearSphere: 
                       { $geometry: 
                         { type: "Point", coordinates: [ -122.4194, 37.7749 ] }, 
-                        $maxDistance: 1 * METERS_PER_MILE 
+                        $maxDistance: .3 * METERS_PER_MILE 
                       } 
                     } 
                   }).toArray((err, docs) => {

@@ -4,11 +4,9 @@ var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
-var SPOTS_COLLECTION = "spots";
 var METERS_PER_MILE = 1609.34
 
 var app = express();
-app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
@@ -43,7 +41,6 @@ function handleError(res, reason, message, code) {
  */
 
 app.get("/parks", function(req, res) {
-    var METERS_PER_MILE = 1609.34
 
     db.collection('parks').find({ location: 
                     { $nearSphere: 

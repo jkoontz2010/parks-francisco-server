@@ -36,6 +36,13 @@ function handleError(res, reason, message, code) {
   res.status(code || 500).json({"error": message});
 }
 
+// allow CORS
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 /*  "/parks"
  *    GET: finds all parks given a GeoJSON object
  */

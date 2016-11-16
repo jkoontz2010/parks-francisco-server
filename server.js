@@ -49,14 +49,18 @@ app.use(function(req, res, next) {
 
 app.get("/parks", function(req, res) {
 
-    db.collection('parks').find({ location: 
-                    { $nearSphere: 
-                      { $geometry: 
-                        { type: "Point", coordinates: [ -122.4194, 37.7749 ] }, 
-                        $maxDistance: .75 * METERS_PER_MILE 
-                      } 
-                    } 
-                  }).toArray((err, docs) => {
+    db.collection('parks').aggregate([
+    { "$geoNear": {
+        "near": {
+            "type": "Point",
+            "coordinates": [ -122.4194, 37.7749 ]
+        }, 
+        "maxDistance": .5 * 1609,
+        "spherical": true,
+        "distanceField": "distance",
+        "distanceMultiplier": 0.000621371
+    }}
+]).toArray((err, docs) => {
                     if (err) {
                       handleError(res, err.message, "Failed to get contacts.");
                     } else {

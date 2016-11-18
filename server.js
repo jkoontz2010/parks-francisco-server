@@ -50,12 +50,12 @@ app.use(function(req, res, next) {
 
 app.get("/parks", function(req, res) {
 
-  if(req.body.lat && req.body.lng) {
+  if(req.params.lat && req.params.lng) {
     db.collection('parks').aggregate([
               { "$geoNear": {
                   "near": {
                       "type": "Point",
-                      "coordinates": [ req.body.lat, req.body.lng ]
+                      "coordinates": [ req.params.lat, req.params.lng ]
                   }, 
                   "maxDistance": 1 * 1609,
                   "spherical": true,

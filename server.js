@@ -50,7 +50,7 @@ app.use(function(req, res, next) {
 
 app.get("/parks", function(req, res) {
 
-  if(req.body.lat && ret.body.lng) {
+  if(req.body.lat && req.body.lng) {
     db.collection('parks').aggregate([
               { "$geoNear": {
                   "near": {

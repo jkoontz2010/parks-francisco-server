@@ -10,6 +10,12 @@ var app = express();
 
 app.use(bodyParser.json());
 
+app.use(express.static(path.join(__dirname, 'dist')));
+
+app.get('/', function(request, response) {
+  response.sendFile(__dirname + '/dist/index.html')
+});
+
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
 

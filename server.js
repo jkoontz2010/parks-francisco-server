@@ -56,7 +56,7 @@ app.get("/parks", function(req, res) {
             "type": "Point",
             "coordinates": [ -122.4194, 37.7749 ]
         }, 
-        "maxDistance": 2 * 1609,
+        "maxDistance": .75 * 1609,
         "spherical": true,
         "distanceField": "distance",
         "distanceMultiplier": 0.000621371

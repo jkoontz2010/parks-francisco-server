@@ -57,7 +57,7 @@ app.get("/parks", function(req, res) {
               { "$geoNear": {
                   "near": {
                       "type": "Point",
-                      "coordinates": [ req.query.lng, req.query.lat ]
+                      "coordinates": [ parseFloat(req.query.lng), parseFloat(req.query.lat) ]
                   }, 
                   "maxDistance": 1 * 1609,
                   "spherical": true,

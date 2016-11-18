@@ -69,6 +69,8 @@ app.get("/parks", function(req, res) {
           res.status(200).json(docs);
         }
       });
+  } else {
+     handleError(res, "Invalid user input", "Must provide a lat and lng.", 400);
   }
 
 });

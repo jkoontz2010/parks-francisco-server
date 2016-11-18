@@ -7,6 +7,7 @@ var ObjectID = mongodb.ObjectID;
 var METERS_PER_MILE = 1609.34
 
 var app = express();
+
 app.use(bodyParser.json());
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
@@ -55,7 +56,7 @@ app.get("/parks", function(req, res) {
             "type": "Point",
             "coordinates": [ -122.4194, 37.7749 ]
         }, 
-        "maxDistance": .5 * 1609,
+        "maxDistance": 2 * 1609,
         "spherical": true,
         "distanceField": "distance",
         "distanceMultiplier": 0.000621371

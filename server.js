@@ -15,6 +15,9 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.get('/', function(request, response) {
   response.sendFile(__dirname + '/dist/index.html')
 });
+app.get('/parks_landing.jpg', function(request, response) {
+  response.sendFile(__dirname + '/dist/parks_landing.jpg')
+});
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;

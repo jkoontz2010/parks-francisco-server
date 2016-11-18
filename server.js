@@ -50,14 +50,14 @@ app.use(function(req, res, next) {
 
 app.get("/parks", function(req, res) {
 
-  if(!(req.params.lat || req.params.lng)) {
+  if(!(req.query.lat || req.query.lng)) {
     handleError(res, "Invalid user input", "Must provide a lat and lng.", 400);
   } else {
     db.collection('parks').aggregate([
               { "$geoNear": {
                   "near": {
                       "type": "Point",
-                      "coordinates": [ req.params.lng, req.params.lat ]
+                      "coordinates": [ req.query.lng, req.query.lat ]
                   }, 
                   "maxDistance": 1 * 1609,
                   "spherical": true,

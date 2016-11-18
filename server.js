@@ -50,23 +50,26 @@ app.use(function(req, res, next) {
 
 app.get("/parks", function(req, res) {
 
+  if(req.body.lat && ret.body.lng) {
     db.collection('parks').aggregate([
-    { "$geoNear": {
-        "near": {
-            "type": "Point",
-            "coordinates": [ -122.4194, 37.7749 ]
-        }, 
-        "maxDistance": 1 * 1609,
-        "spherical": true,
-        "distanceField": "distance",
-        "distanceMultiplier": 0.000621371
-    }}
-]).toArray((err, docs) => {
-                    if (err) {
-                      handleError(res, err.message, "Failed to get contacts.");
-                    } else {
-                      res.status(200).json(docs);
-                    }
-                  });
+              { "$geoNear": {
+                  "near": {
+                      "type": "Point",
+                      "coordinates": [ req.body.lat, req.body.lng ]
+                  }, 
+                  "maxDistance": 1 * 1609,
+                  "spherical": true,
+                  "distanceField": "distance",
+                  "distanceMultiplier": 0.000621371
+              }}
+    ]).toArray((err, docs) => {
+        if (err) {
+          handleError(res, err.message, "Failed to get parks.");
+        } else {
+          res.status(200).json(docs);
+        }
+      });
+  }
+
 });
 

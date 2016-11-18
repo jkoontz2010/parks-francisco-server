@@ -59,7 +59,7 @@ app.get("/parks", function(req, res) {
                       "type": "Point",
                       "coordinates": [ parseFloat(req.query.lng), parseFloat(req.query.lat) ]
                   }, 
-                  "maxDistance": 1 * 1609,
+                  "maxDistance": .85 * 1609,
                   "spherical": true,
                   "distanceField": "distance",
                   "distanceMultiplier": 0.000621371
